@@ -6,16 +6,16 @@ import { useNavigate } from "react-router-dom";
 const Login = () => {
 
     const [values,setValues] = useState({
-        username:'',
+        email:'',
         password:''
-    })
+    });
 
     const navigate = useNavigate()
     axios.defaults.withCredentials = true;
 
     const handleSubmit = (event) => {
       event.preventDefault()
-      axios.post('http://localhost:3000/auth/addminlogin', values)
+      axios.post('http://localhost:3000/auth/adminlogin', values)
       .then(result => {
           navigate('/dashboard')
 
@@ -28,8 +28,8 @@ const Login = () => {
       <form onSubmit={handleSubmit}>
         <h2> Login Page </h2>
         <div className='mb-3'>
-            <label htmlFor="username">User Name:</label>
-            <input className="form-control rounded-0" name="username" type="text" placeholder="Username" onChange={(e) => setValues({...values,username:e.target.value})} required />
+            <label htmlFor="username">Email</label>
+            <input className="form-control rounded-0" name="email" type="email" placeholder="Email" onChange={(e) => setValues({...values,email:e.target.value})} required />
         </div>
 
         <div className='mb-3'>
